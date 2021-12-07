@@ -1,0 +1,56 @@
+﻿@import "C:/Users/pc/Documents/My Web Sites/Testing Site/bootstrap-5.1.3/scss/bootstrap.scss";
+@import "C:/Users/pc/Documents/My Web Sites/Testing Site/sass/_customVariables.scss";
+
+.page-container {
+    @extend .container;
+    @extend .px-0
+}
+
+.navbar-container-structure {
+    @extend .container;
+    @extend .px-0;
+}
+
+.body-component-structure{
+    @extend .container;
+    @extend .px-4;
+    @extend .rounded;
+    @extend .bg-light;
+    @extend .my-3;
+    @extend .ms-0;
+    @extend .me-0;
+}
+
+.navbar-structure {
+    @extend .navbar;
+    @extend .navbar-expand-lg;
+    @extend .navbar-light;
+    @extend .bg-light;
+    @extend .rounded;
+}
+
+.content-container-structure {
+    @extend .container;
+    @extend .px-0;
+    @extend .py-2;
+}
+
+.content-header-structure {
+    @extend .px-0;
+    @extend .pt-4;
+    @extend .pb-2;
+}
+
+.content-structure {
+    @extend .px-0;
+    @extend .py-2;
+}
+
+.sidebar-header-structure {
+    @extend .container;
+    @extend .px-0;
+    @extend .pt-4;
+    @extend .pb-2;
+}
+
+
