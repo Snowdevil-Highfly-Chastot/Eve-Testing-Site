@@ -15,7 +15,7 @@
     var safe_item_index = 0;
     var fuzz_price_data = "";
 
-    /*Create data collection methods inside of an object*/
+    /*Create data collection/distribution methods inside of an object*/
 
     var subFunctions = {
         getIds: function getFormListIds() {
@@ -59,6 +59,7 @@
     if (type_ids.length < safe_item_limit) {
         fuzz_price_data = JSON.parse(subFunctions.getData(service_url + type_ids.join(",")));
         result = type_ids.map(function (type_id) { return [parseFloat(fuzz_price_data[type_id][order_type][order_level])]; });
+        subFunctions.createTable(result);
         console.log(result); //return
     } else {
 
@@ -83,10 +84,7 @@
             fuzz_price_data = JSON.parse(subFunctions.getData(service_url + safe_id_set.join(",")));
             result = result.concat(safe_id_set.map(function (type_id) { return [parseFloat(fuzz_price_data[type_id][order_type][order_level])]; }));
         }
+        subFunctions.createTable(result);
         console.log(result); //return
     }
-
-    subFunctions.createTable(result);
-
-
 }
