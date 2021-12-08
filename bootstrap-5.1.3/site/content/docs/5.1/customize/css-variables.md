@@ -13,7 +13,7 @@ Bootstrap includes many [CSS custom properties (variables)](https://developer.mo
 ## Root variables
 
 Here are the variables we include (note that the `:root` is required) that can be accessed anywhere Bootstrap's CSS is loaded. They're located in our `_root.scss` file and included in our compiled dist files.
-
+{% raw %}
 ```css
 {{< root.inline >}}
 {{- $css := readFile "dist/css/bootstrap.css" -}}
@@ -27,7 +27,7 @@ Here are the variables we include (note that the `:root` is required) that can b
 
 {{< /root.inline >}}
 ```
-
+{% endraw %}
 ## Component variables
 
 We're also beginning to make use of custom properties as local variables for various components. This way we can reduce our compiled CSS, ensure styles aren't inherited in places like nested tables, and allow some basic restyling and extending of Bootstrap components after Sass compilation.
