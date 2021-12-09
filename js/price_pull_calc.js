@@ -27,16 +27,11 @@
         return this.type_ids;
     }
 
-    async function getData(url) {
-        fetch(url)
-        .then(response => 
-         response.json())
-         console.log(response)
-        
-        .then((data) => {
-          console.log(data)
-          return data
-        });
+    function getData(url) {
+        var Httpreq = new XMLHttpRequest(); // a new request
+        Httpreq.open("GET", url, false);
+        Httpreq.send(null);
+        return Httpreq.responseText;
     }
 
     function createTable(array) {
@@ -62,11 +57,9 @@
 
     if (type_ids.length < safe_item_limit) {
 
-        fuzz_price_data = getData(service_url + type_ids.join(","));
-        console.log(fuzz_price_data);
+        fuzz_price_data = JSON.parse(getData(service_url + type_ids.join(",")));
         result = type_ids.map(function (type_id) { return [fuzz_price_data[type_id][order_type][order_level]]; });
         createTable(result);
-        console.log(result); //return
 
     } else {
 
@@ -92,6 +85,5 @@
             result = result.concat(safe_id_set.map(function (type_id) { return [parseFloat(fuzz_price_data[type_id][order_type][order_level])]; }));
         }
         createTable(result);
-        console.log(result); //return
     }
 }
