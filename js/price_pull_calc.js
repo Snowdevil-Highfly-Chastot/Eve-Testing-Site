@@ -17,7 +17,6 @@
 
     /*Create data collection/distribution methods*/
 
-
     function getIds() {
         type_ids = document.getElementById("type_id_list").value.split("\n");
         if (type_ids == "") {
@@ -49,6 +48,12 @@
         return table;
     }
 
+    function getSellPrices(type_id_set) {
+        fuzz_price_data = JSON.parse(getData(service_url + type_id_set.join(",")));
+        result = type_id_set.map(function (type_id) { return [fuzz_price_data[type_id][order_type][order_level]]; });
+        return result;
+    }
+
     /*Collect ID's*/
 
     getIds();
@@ -57,32 +62,26 @@
 
     if (type_ids.length < safe_item_limit) {
 
-        fuzz_price_data = JSON.parse(getData(service_url + type_ids.join(",")));
-        result = type_ids.map(function (type_id) { return [fuzz_price_data[type_id][order_type][order_level]]; });
+        result = getSellPrices(type_ids);
         createTable(result);
 
     } else {
-
         for (i = 0; i < type_ids.length; i++) {
-            // Copy items into a Safe Array
-            safe_id_set.push(type_ids[i]);
+            
+            safe_id_set.push(type_ids[i]); // Copy items into a Safe Array
 
-            //Once Full, Grab the data result
-            if (safe_item_index > safe_item_limit) {
-                fuzz_price_data = JSON.parse(getData(service_url + safe_id_set.join(",")));
-                result = result.concat(safe_id_set.map(function (type_id) { return [parseFloat(fuzz_price_data[type_id][order_type][order_level])]; }));
-
-                //Reset the request buffer for the next set
-                safe_item_index = 0;
+            if (safe_item_index > safe_item_limit) { //Once Full, Grab the data result
+                
+                result = result.concat(getSellPrices(safe_id_set)); 
+                safe_item_index = 0; //Reset the request buffer for the next set
                 safe_id_set = [];
+
             }
             safe_item_index++;
         }
 
-        // Capture overflow buffer
-        if (safe_id_set.length > 0) {
-            fuzz_price_data = JSON.parse(getData(service_url + safe_id_set.join(",")));
-            result = result.concat(safe_id_set.map(function (type_id) { return [parseFloat(fuzz_price_data[type_id][order_type][order_level])]; }));
+        if (safe_id_set.length > 0) { // Capture overflow buffer
+            result = result.concat(getSellPrices(safe_id_set));
         }
         createTable(result);
     }
