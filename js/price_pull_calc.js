@@ -26,11 +26,14 @@
         return this.type_ids;
     }
 
-    function getData(url) {
-        var Httpreq = new XMLHttpRequest(); // a new request
-        Httpreq.open("GET", url, false);
-        Httpreq.send(null);
-        return Httpreq.responseText;
+    async function getData(url) {
+        fetch(url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          fuzz_price_data.push(data);
+        });
     }
 
     function createTable(array) {
@@ -49,7 +52,8 @@
     }
 
     function getSellPrices(type_id_set) {
-        fuzz_price_data = JSON.parse(getData(service_url + type_id_set.join(",")));
+        getData(service_url + type_id_set.join(",")).then(data => {fuzz_price_data = data});
+        console.log(fuzz_price_data);
         result = type_id_set.map(function (type_id) { return [fuzz_price_data[type_id][order_type][order_level]]; });
         return result;
     }
