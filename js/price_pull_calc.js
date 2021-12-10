@@ -13,7 +13,6 @@
     const order_type = "sell";
     const order_level = "min";
     var safe_item_index = 0;
-    var fuzz_price_data = "";
 
     /*Create data collection/distribution methods*/
 
@@ -33,7 +32,6 @@
         })
         .then((data) => {
             result = type_id_list.map(function (type_id) { return [data[type_id][order_type][order_level]]; });
-            console.log(result);
             createTable(result);
         });
     }
