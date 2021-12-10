@@ -26,13 +26,15 @@
         return this.type_ids;
     }
 
-    async function getData(url) {
+    async function getData(url, type_id_list) {
         fetch(url)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          fuzz_price_data.push(data);
+            result = type_id_list.map(function (type_id) { return [data[type_id][order_type][order_level]]; });
+            console.log(result);
+            createTable(result);
         });
     }
 
@@ -51,13 +53,6 @@
         return table;
     }
 
-    function getSellPrices(type_id_set) {
-        getData(service_url + type_id_set.join(",")).then(data => {fuzz_price_data = data});
-        console.log(fuzz_price_data);
-        result = type_id_set.map(function (type_id) { return [fuzz_price_data[type_id][order_type][order_level]]; });
-        return result;
-    }
-
     /*Collect ID's*/
 
     getIds();
@@ -66,17 +61,17 @@
 
     if (type_ids.length < safe_item_limit) {
 
-        result = getSellPrices(type_ids);
-        createTable(result);
+        getData((service_url + type_ids.join(",")), type_ids);
 
     } else {
+
         for (i = 0; i < type_ids.length; i++) {
             
             safe_id_set.push(type_ids[i]); // Copy items into a Safe Array
 
             if (safe_item_index > safe_item_limit) { //Once Full, Grab the data result
                 
-                result = result.concat(getSellPrices(safe_id_set)); 
+                getData((service_url + safe_id_set.join(",")), safe_id_set); 
                 safe_item_index = 0; //Reset the request buffer for the next set
                 safe_id_set = [];
 
@@ -85,8 +80,10 @@
         }
 
         if (safe_id_set.length > 0) { // Capture overflow buffer
-            result = result.concat(getSellPrices(safe_id_set));
+
+            getData((service_url + safe_id_set.join(",")), safe_id_set);
+
         }
-        createTable(result);
+
     }
 }
