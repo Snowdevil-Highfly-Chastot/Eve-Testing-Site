@@ -17,31 +17,20 @@
     /*Return prices if under safe ID count*/
 
     if (type_ids.length < safe_item_limit) {
-
         getData((service_url + type_ids.join(",")), type_ids, order_type, order_level);
-
     } else {
-
         for (i = 0; i < type_ids.length; i++) {
-            
             safe_id_set.push(type_ids[i]); // Copy items into a Safe Array
-
-            if (safe_item_index > safe_item_limit) { //Once Full, Grab the data result
-                
-                getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level); 
-                safe_item_index = 0; //Reset the request buffer for the next set
-                safe_id_set = [];
-
-            }
+                if (safe_item_index > safe_item_limit) { //Once Full, Grab the data result
+                    getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level); 
+                    safe_item_index = 0; //Reset the request buffer for the next set
+                    safe_id_set = [];
+                }
             safe_item_index++;
         }
-
         if (safe_id_set.length > 0) { // Capture overflow buffer
-
             getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level);
-
         }
-
     }
 }
 
