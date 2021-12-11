@@ -1,5 +1,6 @@
 const devGetJsonFromPromise = () => {
-    console.log("test")
+    let devElement = document.getElementById("type_id_list")
+    console.log(devElement.)
 }
 
 
@@ -13,7 +14,7 @@ function _getIds() {
     return type_ids;
 }
 
-async function _getData(url: RequestInfo, type_id_list: (string | number)[], order_type: string | number, order_level: string | number) {
+async function _getData(url, type_id_list, order_type, order_level) {
     fetch(url)
     .then((response) => {
         return response.json();
@@ -24,7 +25,7 @@ async function _getData(url: RequestInfo, type_id_list: (string | number)[], ord
     });
 }
 
-function _createTable(array: string | any[]) {
+function _createTable(array) {
     document.getElementById("result_container").style.display = '';
     var table = document.getElementById('results');
     for (var i = 0; i < array.length; i++) {
