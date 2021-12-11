@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Snowdevil-Highfly-Chastot/Eve-Testing-Site/issues"
   },
-  "homepage": "https://github.com/Snowdevil-Highfly-Chastot/Eve-Testing-Site#readme"
+  "homepage": "https://github.com/Snowdevil-Highfly-Chastot/Eve-Testing-Site#readme",
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
 }
