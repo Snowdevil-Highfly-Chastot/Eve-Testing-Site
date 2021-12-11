@@ -1,18 +1,15 @@
 ﻿function jitaSell(type_ids) {
-
-    /*Set blank variables*/
-
-    type_ids = getIds();
-    var result = [];
-    var safe_id_set = [];
-
-    /*Configuration section*/
+    let type_ids = getIds();
+    let result = [];
+    let safe_id_set = [];
 
     const service_url = "https://market.fuzzwork.co.uk/aggregates/?station=60003760&types=";
     const safe_item_limit = 200;
     const order_type = "sell";
     const order_level = "min";
-    var safe_item_index = 0;
+    let safe_item_index = 0;
+
+    // const 
 
     /*Return prices if under safe ID count*/
 
@@ -21,7 +18,7 @@
     } else {
         for (i = 0; i < type_ids.length; i++) {
             safe_id_set.push(type_ids[i]); // Copy items into a Safe Array
-                if (safe_item_index > safe_item_limit) { //Once Full, Grab the data result
+                if (safe_item_index >= safe_item_limit) { //Once Full, Grab the data result
                     getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level); 
                     safe_item_index = 0; //Reset the request buffer for the next set
                     safe_id_set = [];
@@ -38,7 +35,7 @@
 /*Create data collection/distribution methods*/
 
 function getIds() {
-    type_ids = document.getElementById("type_id_list").value.split("\n");
+    let type_ids = document.getElementById("type_id_list").value.split("\n");
     if (type_ids == "") {
         alert("ID list must be filled out");
         return false;
