@@ -35,7 +35,7 @@
 /*Create data collection/distribution methods*/
 
 function getIds() {
-    let type_ids = document.getElementById("type_id_list").value.split("\n");
+    type_ids = document.getElementById("type_id_list").value.split("\n");
     if (type_ids == "") {
         alert("ID list must be filled out");
         return false;
