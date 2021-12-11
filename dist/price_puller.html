@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>EVE Price Puller</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <link href="../css/master.css" rel="stylesheet">
+    <link href="../css/app.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!--Navbar-->
+
+        <nav class="navbar-structure">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Big-Ol' Testing Site</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="price_puller.html">Price Puller</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row justify-content-start">
+
+            <!--Sidebar-->
+
+            <div class="col-3">
+                <div class="body-component-structure">
+                    <div class="content-container-structure">
+
+                        <div class="sidebar-header-structure">
+                            <h4>SIDE BAR MODE</h4>
+                        </div>
+                        <div class="content-structure">
+                            <p id="sidebar-dynamic-content"></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Main Body-->
+
+            <div class="col-9">
+                <div class="body-component-structure">
+                    <div class="content-container-structure">
+
+                        <div class="content-header-structure">
+                            <h1>Eve Online Item Price Puller</h1>
+                        </div>
+                        <div class="content-structure">
+                            <p>
+                                Fill in the information below to pull market information per item ID.
+                            </p>
+                        </div>
+                        <div class="content-structure">
+                            <form name="form_collect_ids" action="/" method="post">
+                                <label for="type_id_list" class="form-label">Item ID List</label>
+                                <textarea class="form-control" id="type_id_list" name="type_id_list" rows="10"
+                                    placeholder="35"></textarea>
+                            </form>
+                        </div>
+                        <div class="content-structure">
+                            <button type="submit" class="btn btn-primary mb-3" onclick="jitaSell()">Submit</button>
+                        </div>
+                        <div class="content-structure"><button class="btn btn-primary mb-3"
+                                onclick="devGetJsonFromPromise()">Dev</button></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-start" style="display: none" id="result_container">
+
+            <!--Results-->
+
+            <div class="col-12">
+                <div class="body-component-structure">
+                    <div class="content-container-structure">
+
+                        <div class="content-structure">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Jita Sell Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="results">
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

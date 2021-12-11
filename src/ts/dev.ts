@@ -1,4 +1,4 @@
-export const devGetJsonFromPromise = () => {
+const devGetJsonFromPromise = () => {
     let devElement = document.getElementById("type_id_list")
     console.log(devElement.)
 }
