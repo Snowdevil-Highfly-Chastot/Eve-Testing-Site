@@ -1,20 +1,19 @@
 const devGetJsonFromPromise = () => {
-    let devElement = document.getElementById("type_id_list")
-    console.log(devElement.)
+    console.log("test");
 }
 
 
 
-function _getIds() {
-    let type_ids = document.getElementById("type_id_list").value.split("\n");
-    if (type_ids == "") {
-        alert("ID list must be filled out");
-        return false;
-    }
-    return type_ids;
-}
+// function _getIds() {
+//     let type_ids = document.getElementById("type_id_list").value.split("\n");
+//     if (type_ids == "") {
+//         alert("ID list must be filled out");
+//         return false;
+//     }
+//     return type_ids;
+// }
 
-async function _getData(url, type_id_list, order_type, order_level) {
+async function _getData(url: RequestInfo, type_id_list: (string | number)[], order_type: string | number, order_level: string | number) {
     fetch(url)
     .then((response) => {
         return response.json();
@@ -25,7 +24,7 @@ async function _getData(url, type_id_list, order_type, order_level) {
     });
 }
 
-function _createTable(array) {
+function _createTable(array: string | any[]) {
     document.getElementById("result_container").style.display = '';
     var table = document.getElementById('results');
     for (var i = 0; i < array.length; i++) {
@@ -39,3 +38,5 @@ function _createTable(array) {
     }
     return table;
 }
+
+export default devGetJsonFromPromise;
