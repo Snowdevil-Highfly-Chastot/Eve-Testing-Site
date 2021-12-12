@@ -19,6 +19,6 @@ window.onload = () => {
     let dev_btn = document.getElementById("dev_btn");
     if (dev_btn) {
         console.log("dev_btn was not null");
-        dev_btn.addEventListener('click', devGetJsonFromPromise);
+        dev_btn.addEventListener('click', async () => { await devGetJsonFromPromise(); });
     }
 };
