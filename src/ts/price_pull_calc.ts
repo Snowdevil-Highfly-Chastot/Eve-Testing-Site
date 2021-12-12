@@ -36,8 +36,7 @@
 
 function getIds(): string[] {
     let type_ids = (document.getElementById("type_id_list") as HTMLInputElement).value.split("\n");
-    console.log(type_ids)
-    if (type_ids && type_ids.length) {
+    if (!type_ids && !type_ids.length) {
         alert("ID list must be filled out");
         return null;
     }
@@ -57,11 +56,11 @@ async function getData(url: string, type_id_list: Array<string | number>, order_
 
 function createTable(array: Array<any>) {
     document.getElementById("result_container").style.display = '';
-    var table = document.getElementById('results');
-    for (var i = 0; i < array.length; i++) {
-        var row = document.createElement('tr');
-        for (var j = 0; j < array[i].length; j++) {
-            var cell = document.createElement('td');
+    let table = document.getElementById('results');
+    for (let i = 0; i < array.length; i++) {
+        let row = document.createElement('tr');
+        for (let j = 0; j < array[i].length; j++) {
+            let cell = document.createElement('td');
             cell.textContent = array[i][j];
             row.appendChild(cell);
         }
