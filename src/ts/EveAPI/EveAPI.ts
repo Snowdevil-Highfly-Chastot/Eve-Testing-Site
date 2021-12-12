@@ -1,3 +1,5 @@
+import HistoryItem from "./obj/history_item";
+
 class EveAPI {
 
     esiBaseUrl: string = "https://esi.evetech.net/latest"
@@ -17,15 +19,6 @@ class EveAPI {
         console.log(data)
         return data;
     }
-}
-
-class HistoryItem {
-    average: number;
-    date: string;
-    highest: number;
-    lowest: number;
-    order_count: number;
-    volume: number;
 }
 
 export default EveAPI;

@@ -9,8 +9,4 @@ const devGetJsonFromPromise = async () => {
     }
 }
 
-async function fetchHistory(region_id: string, type_id?: number) {
-    const data = await fetch('')
-}
-
 export default devGetJsonFromPromise;
