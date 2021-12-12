@@ -35,18 +35,26 @@
 /*Create data collection/distribution methods*/
 
 function getIds(): string[] {
-    let type_ids = (document.getElementById("type_id_list") as HTMLInputElement).value.split("\n");
-    if (!type_ids && !type_ids.length) {
+    let type_ids = (document.getElementById("type_id_list") as HTMLInputElement).value
+        .split("\n")
+        .filter(val => {
+            let value = val.trim();
+            if (val !== '') { return true; }
+        });
+    if (!type_ids || !type_ids.length) {
         alert("ID list must be filled out");
         return null;
     }
     return type_ids;
 }
 
-async function getData(url: string, type_id_list: Array<string | number>, order_type: string, order_level: string) {
+async function getData(url: string, type_id_list: Array<string>, order_type: string, order_level: string) {
     const resp = await fetch(url);
     const data = await resp.json();
-    const sellValues = type_id_list.map(function (type_id) { return [data[type_id][order_type][order_level]]; });
+    const sellValues = type_id_list.map(function (type_id) {
+        let min_sell = [data[type_id][order_type][order_level]];
+        return min_sell;
+    });
     createTable(sellValues);
 }
 
