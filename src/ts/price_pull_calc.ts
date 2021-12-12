@@ -1,7 +1,6 @@
 ﻿function jitaSell() {
     console.log("jitaSell ran");
     let type_ids: string[] = getIds();
-    let result = [];
     let safe_id_set = [];
 
     const service_url = "https://market.fuzzwork.co.uk/aggregates/?station=60003760&types=";
@@ -9,8 +8,6 @@
     const order_type = "sell";
     const order_level = "min";
     let safe_item_index = 0;
-
-    // const 
 
     /*Return prices if under safe ID count*/
 
@@ -37,9 +34,10 @@
 
 function getIds(): string[] {
     let type_ids = (document.getElementById("type_id_list") as HTMLInputElement).value.split("\n");
-    if (type_ids == []) {
+    console.log(type_ids)
+    if (type_ids && type_ids.length) {
         alert("ID list must be filled out");
-        return;
+        return null;
     }
     return type_ids;
 }

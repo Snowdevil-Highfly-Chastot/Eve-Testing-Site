@@ -1,6 +1,5 @@
 const devGetJsonFromPromise = () => {
-    let devElement = document.getElementById("type_id_list")
-    console.log(devElement)
+    console.log("test");
 }
 
 
@@ -39,3 +38,5 @@ function _createTable(array: string | any[]) {
     }
     return table;
 }
+
+export default devGetJsonFromPromise;
