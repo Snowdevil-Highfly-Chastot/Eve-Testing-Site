@@ -1,6 +1,7 @@
-import devGetJsonFromPromise from './dev';
+import Dev from './dev';
 import jitaSell from './price_pull_calc';
 
+let dev = new Dev()
 window.onload = () => {
 
     let content = "This here is an awesome sidebar to demonstrate the capability of adding side-bar information to the website. <br> <br> Sidebars create an organized looking site when it come to delivering a ton of information"
@@ -19,6 +20,6 @@ window.onload = () => {
     let dev_btn = document.getElementById("dev_btn");
     if (dev_btn) {
         console.log("dev_btn was not null");
-        dev_btn.addEventListener('click', async () => { await devGetJsonFromPromise(); });
+        dev_btn.addEventListener('click', async () => { await dev.devGetJsonFromPromise(); });
     }
 };
