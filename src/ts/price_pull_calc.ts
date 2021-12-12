@@ -46,7 +46,7 @@ function getIds(): string[] {
 async function getData(url: string, type_id_list: Array<string | number>, order_type: string, order_level: string) {
     const resp = await fetch(url);
     const data = await resp.json();
-    const sellValues = type_id_list.map(function (type_id) { return [data][type_id][order_type][order_level]; });
+    const sellValues = type_id_list.map(function (type_id) { return [data[type_id][order_type][order_level]]; });
     createTable(sellValues);
 }
 
