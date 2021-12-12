@@ -9,6 +9,8 @@
     const order_level = "min";
     let safe_item_index = 0;
 
+    if (!type_ids) { return; }
+
     /*Return prices if under safe ID count*/
 
     if (type_ids.length < safe_item_limit) {
