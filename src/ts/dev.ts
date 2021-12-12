@@ -2,7 +2,8 @@ import EveAPI from "./EveAPI/EveAPI";
 
 
 export default class Dev {
-    esi = new EveAPI();
+    
+    esi = new EveAPI("Snowdevil-Price-Checker");
 
     devGetJsonFromPromise = async () => {
         let test = await this.esi.fetchHistory("10000002", 35)
@@ -12,5 +13,4 @@ export default class Dev {
         }
         console.log(test);
     }
-
 }
