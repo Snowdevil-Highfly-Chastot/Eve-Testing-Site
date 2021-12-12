@@ -1,1 +1,1 @@
-import 'dev.ts';
+import './dev.ts';

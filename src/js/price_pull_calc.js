@@ -1,4 +1,5 @@
-﻿function jitaSell(type_ids) {
+﻿function jitaSell() {
+    console.log("jitaSell ran");
     let type_ids = getIds();
     let result = [];
     let safe_id_set = [];
@@ -18,11 +19,11 @@
     } else {
         for (i = 0; i < type_ids.length; i++) {
             safe_id_set.push(type_ids[i]); // Copy items into a Safe Array
-                if (safe_item_index >= safe_item_limit) { //Once Full, Grab the data result
-                    getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level); 
-                    safe_item_index = 0; //Reset the request buffer for the next set
-                    safe_id_set = [];
-                }
+            if (safe_item_index >= safe_item_limit) { //Once Full, Grab the data result
+                getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level);
+                safe_item_index = 0; //Reset the request buffer for the next set
+                safe_id_set = [];
+            }
             safe_item_index++;
         }
         if (safe_id_set.length > 0) { // Capture overflow buffer
@@ -35,7 +36,7 @@
 /*Create data collection/distribution methods*/
 
 function getIds() {
-    type_ids = document.getElementById("type_id_list").value.split("\n");
+    let type_ids = document.getElementById("type_id_list").value.split("\n");
     if (type_ids == "") {
         alert("ID list must be filled out");
         return false;
@@ -45,13 +46,13 @@ function getIds() {
 
 async function getData(url, type_id_list, order_type, order_level) {
     fetch(url)
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        result = type_id_list.map(function (type_id) { return [data[type_id][order_type][order_level]]; });
-        createTable(result);
-    });
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            let result = type_id_list.map(function (type_id) { return [data[type_id][order_type][order_level]]; });
+            createTable(result);
+        });
 }
 
 function createTable(array) {
@@ -68,3 +69,5 @@ function createTable(array) {
     }
     return table;
 }
+
+export default jitaSell;

@@ -1,18 +1,18 @@
 const devGetJsonFromPromise = () => {
     let devElement = document.getElementById("type_id_list")
-    console.log(devElement.)
+    console.log(devElement)
 }
 
 
 
-function _getIds() {
-    let type_ids = document.getElementById("type_id_list").value.split("\n");
-    if (type_ids == "") {
-        alert("ID list must be filled out");
-        return false;
-    }
-    return type_ids;
-}
+// function _getIds() {
+//     let type_ids = document.getElementById("type_id_list").value.split("\n");
+//     if (type_ids == "") {
+//         alert("ID list must be filled out");
+//         return false;
+//     }
+//     return type_ids;
+// }
 
 async function _getData(url: RequestInfo, type_id_list: (string | number)[], order_type: string | number, order_level: string | number) {
     fetch(url)
