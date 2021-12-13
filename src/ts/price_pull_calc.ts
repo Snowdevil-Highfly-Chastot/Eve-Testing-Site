@@ -59,14 +59,14 @@ async function getData(url: string, type_id_list: Array<string>, order_type: str
 }
 
 function clearTable() {
-    let table = document.getElementById('results');
+    let table = document.getElementById('result_body');
     table.innerHTML = '';
 }
 
-function createSellPriceTable(array: Array<any>) {
+function createSellPriceTable(array: Array<any>): void {
     clearTable();
     document.getElementById("result_container").style.display = '';
-    let table = document.getElementById('results');
+    let table = document.getElementById('result_body');
     for (let i = 0; i < array.length; i++) {
         let row = document.createElement('tr');
         for (let j = 0; j < array[i].length; j++) {
@@ -76,7 +76,6 @@ function createSellPriceTable(array: Array<any>) {
         }
         table.appendChild(row);
     }
-    return table;
 }
 
 export default jitaSell;
