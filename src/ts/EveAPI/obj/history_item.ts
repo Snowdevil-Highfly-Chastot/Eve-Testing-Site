@@ -1,4 +1,4 @@
-export default class HistoryItem {
+type HistoryItem = {
     average: number;
     date: string;
     highest: number;
@@ -6,3 +6,5 @@ export default class HistoryItem {
     order_count: number;
     volume: number;
 }
+
+export default HistoryItem;
