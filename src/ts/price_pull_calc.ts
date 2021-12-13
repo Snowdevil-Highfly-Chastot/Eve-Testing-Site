@@ -83,7 +83,7 @@ function createSellPriceTable(data: Array<FuzzyItem>): void {
     table_header.id = 'result_header';
     let header_row = document.createElement('tr');
 
-    for (let col in headers) {
+    for (const col in headers) {
         let cell = document.createElement('th');
         cell.textContent = headers[col];
         header_row.appendChild(cell);
@@ -108,7 +108,7 @@ function createSellPriceTable(data: Array<FuzzyItem>): void {
             "max"
         ]
 
-        for (let value in valuesOfInterest) {
+        for (const value in valuesOfInterest) {
             const val = valuesOfInterest[value] as keyof FuzzyData;
             let cell = document.createElement('td');
             cell.textContent = (sell_data[val] as unknown) as string;
