@@ -55,10 +55,16 @@ async function getData(url: string, type_id_list: Array<string>, order_type: str
         let min_sell = [data[type_id][order_type][order_level]];
         return min_sell;
     });
-    createTable(sellValues);
+    createSellPriceTable(sellValues);
 }
 
-function createTable(array: Array<any>) {
+function clearTable() {
+    let table = document.getElementById('results');
+    table.innerHTML = '';
+}
+
+function createSellPriceTable(array: Array<any>) {
+    clearTable();
     document.getElementById("result_container").style.display = '';
     let table = document.getElementById('results');
     for (let i = 0; i < array.length; i++) {
