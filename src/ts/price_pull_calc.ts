@@ -1,4 +1,5 @@
-﻿import FuzzyItem from './obl/fuzzy_item';
+﻿import FuzzyData from "./EveAPI/obj/fuzzy_data";
+import FuzzyItem from "./EveAPI/obj/fuzzy_item";
 
 function jitaSell() {
     console.log("jitaSell ran");
@@ -52,37 +53,85 @@ function getIds(): string[] {
 
 async function fetchAndDisplayData(url: string, type_id_list: Array<string>, order_type: string, order_level: string) {
     const resp = await fetch(url);
-    const data = await resp.json();
+    const data: Array<FuzzyItem> = await resp.json();
     console.log(data)
-    const sellValues = type_id_list.map(function (type_id) {
-        let min_sell = [data[type_id][order_type][order_level]];
-        return min_sell;
-    });
-    createSellPriceTable(sellValues);
+    for (let item in data) {
+        console.log(data[item].sell.min)
+    }
+    createSellPriceTable(data);
 }
 
 function clearTable() {
-    let table = document.getElementById('result_body');
+    let table = document.getElementById('result_table');
     table.innerHTML = '';
-}
 
-function createSellPriceTable(array: Array<any>): void {
+}  
+
+function createSellPriceTable(data: Array<FuzzyItem>): void {
     clearTable();
     document.getElementById("result_container").style.display = '';
+    let table = document.getElementById('result_table');
 
-    let table_header = document.getElementById('result_header');
-    console.log(array)
-    
-    let table = document.getElementById('result_body');
-    for (let i = 0; i < array.length; i++) {
-        let row = document.createElement('tr');
-        for (let j = 0; j < array[i].length; j++) {
-            let cell = document.createElement('td');
-            cell.textContent = array[i][j];
-            row.appendChild(cell);
-        }
-        table.appendChild(row);
+    const headers = [
+        "ID",
+        "Min",
+        "Avg",
+        "Max"
+    ];
+
+    let table_header = document.createElement('thead');
+    table_header.id = 'result_header';
+    let header_row = document.createElement('tr');
+
+    for (let col in headers) {
+        let cell = document.createElement('th');
+        cell.textContent = headers[col];
+        header_row.appendChild(cell);
     }
+
+    table_header.appendChild(header_row);
+    table.appendChild(table_header);
+
+    let table_body = document.createElement('tbody');
+    table_body.id = 'result_body';
+
+    for (const item in data) {
+        const body_row = document.createElement('tr');
+        const id_cell = document.createElement('td');
+        id_cell.textContent = item;
+        body_row.appendChild(id_cell);
+
+        const sell_data = data[item].sell;
+        const valuesOfInterest = [
+            "min",
+            "weightedAverage",
+            "max"
+        ]
+
+        for (let value in valuesOfInterest) {
+            const val = valuesOfInterest[value] as keyof FuzzyData;
+            let cell = document.createElement('td');
+            cell.textContent = (sell_data[val] as unknown) as string;
+            body_row.appendChild(cell);
+        }
+
+
+        console.log(sell_data);
+        table_body.appendChild(body_row);
+    }
+
+    table.appendChild(table_body);
+    
+    // let table = document.getElementById('result_body');
+    // for (let i = 0; i < data.length; i++) {
+    //     let row = document.createElement('tr');
+    //     for (let j = 0; j < data[i].length; j++) {
+    //         let cell = document.createElement('td');
+    //         cell.textContent = data[i][j];
+    //         row.appendChild(cell);
+    //     }
+    //     table.appendChild(row);
+    // }
 }
 
 export default jitaSell;
