@@ -1,4 +1,6 @@
-﻿function jitaSell() {
+﻿import FuzzyItem from './obl/fuzzy_item';
+
+function jitaSell() {
     console.log("jitaSell ran");
     let type_ids: string[] = getIds();
     let safe_id_set = [];
@@ -14,19 +16,19 @@
     /*Return prices if under safe ID count*/
 
     if (type_ids.length < safe_item_limit) {
-        getData((service_url + type_ids.join(",")), type_ids, order_type, order_level);
+        fetchAndDisplayData((service_url + type_ids.join(",")), type_ids, order_type, order_level);
     } else {
         for (let i = 0; i < type_ids.length; i++) {
             safe_id_set.push(type_ids[i]); // Copy items into a Safe Array
             if (safe_item_index >= safe_item_limit) { //Once Full, Grab the data result
-                getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level);
+                fetchAndDisplayData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level);
                 safe_item_index = 0; //Reset the request buffer for the next set
                 safe_id_set = [];
             }
             safe_item_index++;
         }
         if (safe_id_set.length > 0) { // Capture overflow buffer
-            getData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level);
+            fetchAndDisplayData((service_url + safe_id_set.join(",")), safe_id_set, order_type, order_level);
         }
     }
 }
@@ -48,9 +50,10 @@ function getIds(): string[] {
     return type_ids;
 }
 
-async function getData(url: string, type_id_list: Array<string>, order_type: string, order_level: string) {
+async function fetchAndDisplayData(url: string, type_id_list: Array<string>, order_type: string, order_level: string) {
     const resp = await fetch(url);
     const data = await resp.json();
+    console.log(data)
     const sellValues = type_id_list.map(function (type_id) {
         let min_sell = [data[type_id][order_type][order_level]];
         return min_sell;
@@ -66,6 +69,10 @@ function clearTable() {
 function createSellPriceTable(array: Array<any>): void {
     clearTable();
     document.getElementById("result_container").style.display = '';
+
+    let table_header = document.getElementById('result_header');
+    console.log(array)
+    
     let table = document.getElementById('result_body');
     for (let i = 0; i < array.length; i++) {
         let row = document.createElement('tr');

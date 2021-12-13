@@ -4,7 +4,7 @@ import jitaSell from './price_pull_calc';
 let dev = new Dev()
 window.onload = () => {
 
-    let content = "This here is an awesome sidebar to demonstrate the capability of adding side-bar information to the website. <br> <br> Sidebars create an organized looking site when it come to delivering a ton of information"
+    let content = "This site is in development! We're working very hard to get it running nice and smooth. 😊 Please bear with us!"
     let sidebar = document.getElementById("sidebar-dynamic-content");
     if (sidebar) {
         sidebar.innerHTML = content;
