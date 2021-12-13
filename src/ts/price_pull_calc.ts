@@ -115,23 +115,11 @@ function createSellPriceTable(data: Array<FuzzyItem>): void {
             body_row.appendChild(cell);
         }
 
-
         console.log(sell_data);
         table_body.appendChild(body_row);
     }
 
     table.appendChild(table_body);
-    
-    // let table = document.getElementById('result_body');
-    // for (let i = 0; i < data.length; i++) {
-    //     let row = document.createElement('tr');
-    //     for (let j = 0; j < data[i].length; j++) {
-    //         let cell = document.createElement('td');
-    //         cell.textContent = data[i][j];
-    //         row.appendChild(cell);
-    //     }
-    //     table.appendChild(row);
-    // }
 }
 
 export default jitaSell;
