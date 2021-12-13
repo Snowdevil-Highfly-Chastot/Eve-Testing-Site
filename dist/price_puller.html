@@ -78,28 +78,27 @@
                                 Fill in the information below to pull market information per item ID.
                             </p>
                         </div>
-                        <div class="content-structure row">
-                            <div class="col-2">
-                                <select class="form-select" aria-label="Default select example">
-                                <option selected>Hub</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="col-2">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Order Type</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                        <div class="content-structure">
+                            <div class="row">
+                                <div class="col-2">
+                                    <select class="form-select" aria-label="Default select example">
+                                    <option selected>Jita</option>
+                                    <option>Amarr</option>
+                                    <option>Hek</option>
+                                    <option>Rens</option>
                                     </select>
+                                </div>
+                                <div class="col-2">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Sell</option>
+                                        <option>Buy</option>
+                                        </select>
+                                </div>
+                                <div class="col-2 mb-3">
+                                    <input type="text" class="form-control" placeholder="Price Percent" aria-label="Price Percent" aria-describedby="basic-addon2">
+                                </div>
                             </div>
-                            <div class="input-group col-2 mb-3">
-                                <input type="text" class="form-control" placeholder="Price Percentage" aria-label="Price Percentage" aria-describedby="basic-addon2">
-                              </div>
-                    
-                            <form name="form_collect_ids" action="/" method="post" class="py-3">
+                            <form name="form_collect_ids" action="/" method="post" class="py-1">
                                 <textarea class="form-control" id="type_id_list" name="type_id_list" rows="10"
                                     placeholder="35"></textarea>
                             </form>
