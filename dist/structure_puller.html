@@ -33,10 +33,10 @@
                             <a class="nav-link" href="../index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="price_puller.html">Price Puller</a>
+                            <a class="nav-link" aria-current="page" href="price_puller.html">Price Puller</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="structure_puller.html">Structure Puller</a>
+                            <a class="nav-link active" aria-current="page" href="structure_puller.html">Structure Puller</a>
                         </li>
                     </ul>
                 </div>
@@ -69,37 +69,20 @@
                     <div class="content-container-structure">
 
                         <div class="content-header-structure">
-                            <h1>Eve Online Item Price Puller</h1>
+                            <h1>Eve Online Structure Puller</h1>
                         </div>
                         <div class="content-structure">
                             <p>
-                                Fill in the information below to pull market information per item ID.
+                                Start pulling a list of all the active orders of a structure by entering the structure's ID below.
                             </p>
                         </div>
                         <div class="content-structure">
                             <div class="row">
-                                <div class="col-2">
-                                    <select class="form-select" aria-label="Default select example">
-                                    <option selected>Jita</option>
-                                    <option>Amarr</option>
-                                    <option>Hek</option>
-                                    <option>Rens</option>
-                                    </select>
-                                </div>
-                                <div class="col-2">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Sell</option>
-                                        <option>Buy</option>
-                                        </select>
-                                </div>
-                                <div class="col-2 mb-3">
-                                    <input type="text" class="form-control" placeholder="Price Percent" aria-label="Price Percent" aria-describedby="basic-addon2">
+                                <div class="col-6 mb-3">
+                                    <label for="structure_id" class="form-label">Enter Structure ID</label>
+                                    <input type="text" class="form-control" id="structure_id" placeholder="ID" aria-label="ID" aria-describedby="basic-addon2">
                                 </div>
                             </div>
-                            <form name="form_collect_ids" action="/" method="post" class="py-1">
-                                <textarea class="form-control" id="type_id_list" name="type_id_list" rows="10"
-                                    placeholder="35"></textarea>
-                            </form>
                         </div>
                         <div class="content-structure">
                             <button type="submit" class="btn btn-primary mb-3" id="submit">Submit</button>
